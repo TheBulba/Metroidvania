@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca4w22kistquc"]
+
+[ext_resource type="PackedScene" uid="uid://byifhc37s8yhg" path="res://Scenes/brick.tscn" id="1_r2a6e"]
+[ext_resource type="PackedScene" uid="uid://df7ptdnqe5sew" path="res://Scenes/player.tscn" id="2_58yi5"]
+
+[node name="World" type="Node"]
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Brick" parent="." instance=ExtResource("1_r2a6e")]
+position = Vector2(0, 164)
+
+[node name="Brick2" parent="." instance=ExtResource("1_r2a6e")]
+position = Vector2(16, 164)
+
+[node name="Brick3" parent="." instance=ExtResource("1_r2a6e")]
+position = Vector2(32, 164)
+
+[node name="Brick4" parent="." instance=ExtResource("1_r2a6e")]
+position = Vector2(48, 164)
+
+[node name="Brick5" parent="." instance=ExtResource("1_r2a6e")]
+position = Vector2(64, 164)
+
+[node name="Brick6" parent="." instance=ExtResource("1_r2a6e")]
+position = Vector2(80, 164)
+
+[node name="Brick7" parent="." instance=ExtResource("1_r2a6e")]
+position = Vector2(96, 164)
+
+[node name="Brick8" parent="." instance=ExtResource("1_r2a6e")]
+position = Vector2(112, 164)
+
+[node name="Brick9" parent="." instance=ExtResource("1_r2a6e")]
+position = Vector2(128, 164)
+
+[node name="Player" parent="." instance=ExtResource("2_58yi5")]
+position = Vector2(8, 92)
