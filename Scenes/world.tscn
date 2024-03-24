@@ -17,29 +17,20 @@ metadata/_edit_lock_ = true
 [node name="Brick" parent="." instance=ExtResource("1_r2a6e")]
 position = Vector2(0, 164)
 
-[node name="Brick2" parent="." instance=ExtResource("1_r2a6e")]
-position = Vector2(16, 164)
-
-[node name="Brick3" parent="." instance=ExtResource("1_r2a6e")]
-position = Vector2(32, 164)
-
-[node name="Brick4" parent="." instance=ExtResource("1_r2a6e")]
-position = Vector2(48, 164)
-
-[node name="Brick5" parent="." instance=ExtResource("1_r2a6e")]
-position = Vector2(64, 164)
-
-[node name="Brick6" parent="." instance=ExtResource("1_r2a6e")]
-position = Vector2(80, 164)
-
-[node name="Brick7" parent="." instance=ExtResource("1_r2a6e")]
-position = Vector2(96, 164)
-
-[node name="Brick8" parent="." instance=ExtResource("1_r2a6e")]
-position = Vector2(112, 164)
-
-[node name="Brick9" parent="." instance=ExtResource("1_r2a6e")]
-position = Vector2(128, 164)
-
 [node name="Player" parent="." instance=ExtResource("2_58yi5")]
-position = Vector2(8, 92)
+position = Vector2(160, 98)
+
+[node name="Camera_Follow" parent="Player" index="3"]
+remote_path = NodePath("../../Camera")
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(160, 90)
+position_smoothing_enabled = true
+
+[node name="Terrain" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Terrain"]
+position = Vector2(-16, -16)
+polygon = PackedVector2Array(32, 16, 32, 144, 176, 144, 208, 112, 256, 112, 256, 128, 304, 128, 336, 144, 352, 144, 352, 16, 368, 16, 368, 176, 16, 176, 16, 16)
+
+[editable path="Player"]

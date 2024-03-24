@@ -95,3 +95,8 @@ shape = SubResource("RectangleShape2D_fl46c")
 libraries = {
 "": SubResource("AnimationLibrary_4jp1y")
 }
+
+[node name="Camera_Follow" type="RemoteTransform2D" parent="."]
+position = Vector2(0, -8)
+update_rotation = false
+update_scale = false

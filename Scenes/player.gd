@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
+#note if anything breaks remove floor_snap
 
 const SPEED = 256
 const MAX_SPEED = 64 
 const FRICTION = 0.25
 const GRAVITY = 200
-const JUMP_FORCE = 128
+const JUMP_FORCE = 128.0
 
 func _physics_process(delta):
 	
@@ -14,8 +15,10 @@ func _physics_process(delta):
 	gravity(delta)
 	jump()
 	get_animation(x)
-
+	
+	floor_snap_length = 2
 	move_and_slide()
+
 
 
 
