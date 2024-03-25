@@ -1,21 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://ca4w22kistquc"]
+[gd_scene load_steps=4 format=3 uid="uid://ca4w22kistquc"]
 
-[ext_resource type="PackedScene" uid="uid://byifhc37s8yhg" path="res://Scenes/brick.tscn" id="1_r2a6e"]
+[ext_resource type="Script" path="res://Scenes/world.gd" id="1_n3l74"]
 [ext_resource type="PackedScene" uid="uid://df7ptdnqe5sew" path="res://Scenes/player.tscn" id="2_58yi5"]
+[ext_resource type="PackedScene" uid="uid://cqpq46xvdj4js" path="res://World/tile_map.tscn" id="2_qdfr3"]
 
 [node name="World" type="Node"]
-
-[node name="Background" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="Brick" parent="." instance=ExtResource("1_r2a6e")]
-position = Vector2(0, 164)
+script = ExtResource("1_n3l74")
 
 [node name="Player" parent="." instance=ExtResource("2_58yi5")]
 position = Vector2(160, 98)
@@ -27,10 +17,7 @@ remote_path = NodePath("../../Camera")
 position = Vector2(160, 90)
 position_smoothing_enabled = true
 
-[node name="Terrain" type="StaticBody2D" parent="."]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Terrain"]
-position = Vector2(-16, -16)
-polygon = PackedVector2Array(32, 16, 32, 144, 176, 144, 208, 112, 256, 112, 256, 128, 304, 128, 336, 144, 352, 144, 352, 16, 368, 16, 368, 176, 16, 176, 16, 16)
+[node name="TileMap" parent="." instance=ExtResource("2_qdfr3")]
+layer_0/tile_data = PackedInt32Array(196608, 0, 0, 262144, 0, 1, 327680, 0, 1, 393216, 0, 1, 458752, 0, 1, 524288, 0, 1, 589824, 0, 1, 655360, 0, 2, 655361, 65536, 2, 655362, 65536, 2, 655363, 65536, 2, 655364, 65536, 2, 655365, 65536, 2, 655366, 65536, 2, 655367, 65536, 2, 655368, 65536, 2, 655369, 65536, 2, 655370, 65536, 2, 655371, 65536, 2, 655372, 393216, 1, 655373, 131072, 1, 655376, 0, 2, 655377, 65536, 2, 655378, 65536, 2, 655379, 131072, 2, 589843, 131072, 1, 524307, 131072, 1, 458771, 131072, 1, 393235, 131072, 1, 327699, 131072, 0, 327698, 65536, 0, 393234, 65536, 1, 458770, 65536, 1, 524306, 65536, 1, 589842, 65536, 1, 589841, 65536, 1, 524305, 65536, 1, 458769, 393216, 2, 393233, 0, 1, 327697, 0, 0, 458768, 0, 0, 524304, 0, 1, 589840, 0, 1, 589837, 131072, 1, 589836, 65536, 1, 589835, 393216, 2, 524301, 131072, 0, 524300, 65536, 0, 524299, 0, 0, 589834, 65536, 0, 589833, 65536, 0, 589832, 65536, 0, 589831, 65536, 0, 589830, 65536, 0, 196609, 131072, 0, 262145, 131072, 1, 524289, 131072, 1, 458753, 131072, 1, 393217, 131072, 1, 327681, 131072, 1, 589825, 327680, 2, 589826, 65536, 0, 589827, 65536, 0, 589828, 65536, 0, 589829, 65536, 0, 720908, 0, 1, 720909, 131072, 1, 786445, 131072, 1, 851981, 327680, 2, 851980, 0, 1, 786444, 0, 1, 917516, 0, 2, 917517, 65536, 2, 917518, 65536, 2, 851982, 65536, 0, 851983, 65536, 0, 851984, 65536, 0, 917520, 65536, 2, 917519, 65536, 2, 917521, 65536, 2, 851985, 65536, 0, 917522, 65536, 2, 917523, 65536, 2, 851987, 65536, 0, 851986, 65536, 0, 851988, 65536, 0, 917524, 65536, 2, 917525, 65536, 2, 851989, 65536, 0, 851990, 131072, 0, 917526, 131072, 2)
 
 [editable path="Player"]
