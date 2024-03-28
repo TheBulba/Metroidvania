@@ -2,11 +2,16 @@ extends CharacterBody2D
 
 #note if anything breaks remove floor_snap
 
+const DUST_EFFECT = preload("res://Effect/dust_effect.tscn")
+
 const SPEED = 256
 const MAX_SPEED = 64 
 const FRICTION = 0.25
 const GRAVITY = 200
 const JUMP_FORCE = 128.0
+
+var jumpwindow = true
+var jumping = false
 
 func _physics_process(delta):
 	
@@ -14,14 +19,24 @@ func _physics_process(delta):
 	horizontal_velocity(x, delta)
 	gravity(delta)
 	jump()
+	coyote_jump()
 	get_animation(x)
 	
 	floor_snap_length = 2
 	move_and_slide()
-
-
-
-
+	
+	if is_on_floor():
+		jumping = false
+		jumpwindow = true
+	elif jumping == false and jumpwindow == true and !is_on_floor() :
+		jumpwindow = false
+		$Coyote.start()
+		
+	
+	
+	print(jumping)
+	print($Coyote.time_left)
+	
 func get_input():
 	var x = Input.get_axis("ui_left", "ui_right")
 	return x
@@ -38,13 +53,26 @@ func gravity(delta):
 		velocity.y += GRAVITY * delta
 		velocity.y = min(velocity.y, JUMP_FORCE)
 		
+func coyote_jump():		
+	if !is_on_floor() and $Coyote.time_left > 0 and jumping == false:
+		if Input.is_action_just_pressed("ui_up"):
+			velocity.y = -JUMP_FORCE
+			jumping = true
+		elif Input.is_action_just_released("ui_up") and velocity.y < -JUMP_FORCE/2:
+			velocity.y = -JUMP_FORCE/2	
+			jumping = true
+			
 func jump():
-	if Input.is_action_just_pressed("ui_up") and is_on_floor():
-		velocity.y = -JUMP_FORCE
-	elif Input.is_action_just_released("ui_up") and velocity.y < -JUMP_FORCE/2:
-		velocity.y = -JUMP_FORCE/2
-
+	if is_on_floor():
+		if Input.is_action_just_pressed("ui_up"): 
+			velocity.y = -JUMP_FORCE
+			jumping = true
+		elif Input.is_action_just_released("ui_up") and velocity.y < -JUMP_FORCE/2:
+			velocity.y = -JUMP_FORCE/2
+			jumping = true
+	
 func get_animation(x):
+	
 	if x > 0:
 		$Player.flip_h = false
 		$Sprite_Animator.play("Run")
@@ -56,3 +84,9 @@ func get_animation(x):
 	
 	if !is_on_floor():
 		$Sprite_Animator.play("Jump")
+
+func creat_dust_effect():
+	var main = get_tree().current_scene
+	var dust_effect = DUST_EFFECT.instantiate()
+	main.add_child(dust_effect)
+	dust_effect.global_position = position

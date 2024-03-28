@@ -70,23 +70,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [4, 5, 6, 7, 8, 9, 7]
 }
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.3, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"creat_dust_effect"
-}, {
-"args": [],
-"method": &"creat_dust_effect"
-}]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4jp1y"]
 _data = {
@@ -119,5 +102,4 @@ update_rotation = false
 update_scale = false
 
 [node name="Coyote" type="Timer" parent="."]
-wait_time = 0.2
 one_shot = true
