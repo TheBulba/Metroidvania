@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://fwbav4ysn437"]
+
+[ext_resource type="Script" path="res://Scenes/projectile.gd" id="1_v8rd6"]
+
+[node name="Projectile" type="Node2D"]
+script = ExtResource("1_v8rd6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-4, -4, 8, 8)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
