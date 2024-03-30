@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://duhqt6hm7tae6"]
+
+[ext_resource type="Texture2D" uid="uid://b22jju37qgx83" path="res://Assets/Sprites/World/MovingPlatform.png" id="1_dcebo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_litv0"]
+size = Vector2(32, 10)
+
+[sub_resource type="Curve2D" id="Curve2D_xtlme"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -64)
+}
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_6fm3v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_jb1du"]
+resource_name = "loop"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_plpgi"]
+_data = {
+"RESET": SubResource("Animation_6fm3v"),
+"loop": SubResource("Animation_jb1du")
+}
+
+[node name="MovingPlatform_1" type="Node2D"]
+metadata/_edit_group_ = true
+
+[node name="Platform" type="CharacterBody2D" parent="."]
+rotation = -1.5708
+collision_layer = 2
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform"]
+rotation = 1.5708
+texture = ExtResource("1_dcebo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_litv0")
+one_way_collision = true
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_xtlme")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+rotation = -1.5708
+rotates = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]
+remote_path = NodePath("../../../Platform")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+callback_mode_process = 0
+libraries = {
+"": SubResource("AnimationLibrary_plpgi")
+}
+autoplay = "loop"

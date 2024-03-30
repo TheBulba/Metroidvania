@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwutelbrhl7sv"]
+[gd_scene load_steps=8 format=3 uid="uid://bwutelbrhl7sv"]
 
-[ext_resource type="PackedScene" uid="uid://fwbav4ysn437" path="res://Scenes/projectile.tscn" id="1_4nc6u"]
-[ext_resource type="Texture2D" uid="uid://rgq2jjfgod73" path="res://Assets/Sprites/Player/PlayerBullet.png" id="2_ognoj"]
-[ext_resource type="Script" path="res://Scenes/player_bullet.gd" id="2_usy64"]
+[ext_resource type="PackedScene" uid="uid://fwbav4ysn437" path="res://Scenes/projectile.tscn" id="1_0nf2e"]
+[ext_resource type="Script" path="res://Player/player_bullet.gd" id="2_oo0hx"]
+[ext_resource type="Texture2D" uid="uid://rgq2jjfgod73" path="res://Assets/Sprites/Player/PlayerBullet.png" id="3_vu15d"]
 
 [sub_resource type="Animation" id="Animation_jns76"]
 length = 0.001
@@ -56,11 +56,14 @@ _data = {
 "Shoot": SubResource("Animation_0lvby")
 }
 
-[node name="PlayerBullet" instance=ExtResource("1_4nc6u")]
-script = ExtResource("2_usy64")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wmuts"]
+size = Vector2(6, 4)
+
+[node name="PlayerBullet" instance=ExtResource("1_0nf2e")]
+script = ExtResource("2_oo0hx")
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_ognoj")
+texture = ExtResource("3_vu15d")
 hframes = 2
 
 [node name="AnimationPlayer" parent="." index="2"]
@@ -68,3 +71,11 @@ libraries = {
 "": SubResource("AnimationLibrary_ue6qw")
 }
 autoplay = "Shoot"
+
+[node name="Hitbox" parent="." index="3"]
+collision_mask = 10
+
+[node name="Collider" parent="Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_wmuts")
+
+[editable path="Hitbox"]

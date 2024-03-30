@@ -3,12 +3,13 @@ extends CharacterBody2D
 #note if anything breaks remove floor_snap
 
 const DUST_EFFECT = preload("res://Effect/dust_effect.tscn")
-const PLAYER_BULLET = preload("res://Scenes/player_bullet.tscn")
+const PLAYER_BULLET = preload("res://Player/player_bullet.tscn")
 const SPEED = 256
 const MAX_SPEED = 64 
 const FRICTION = 0.25
 const GRAVITY = 200
 const JUMP_FORCE = 128.0
+const MAX_JUMP = 168.0
 const BULLET_SPEED = 200
 
 var jumpwindow = true
@@ -38,10 +39,11 @@ func _physics_process(delta):
 	elif jumping == false and jumpwindow == true and !is_on_floor() :
 		jumpwindow = false
 		$Coyote.start()
-		
+			
 	# For Future Debugging
 	#print(jumping)
 	#print($Coyote.time_left)
+	
 func get_input():
 	var x = Input.get_axis("ui_left", "ui_right")
 	return x
@@ -64,7 +66,10 @@ func jump():
 			jumping = true	
 		elif Input.is_action_just_released("ui_up") and velocity.y < -JUMP_FORCE/2:
 			velocity.y = -JUMP_FORCE/2
-			
+		
+		#Added to limit platform boosted
+		velocity.y = clamp(velocity.y, -GRAVITY, MAX_JUMP)
+		
 func coyote_jump():		
 	if !is_on_floor() and $Coyote.time_left > 0 and jumping == false:
 		if Input.is_action_just_pressed("ui_up"):

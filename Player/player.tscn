@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://df7ptdnqe5sew"]
 
-[ext_resource type="Script" path="res://Scenes/player.gd" id="1_74ab3"]
+[ext_resource type="Script" path="res://Player/player.gd" id="1_74ab3"]
 [ext_resource type="Texture2D" uid="uid://cx013lfmrlurw" path="res://Assets/Sprites/Player/Player.png" id="1_xygqi"]
-[ext_resource type="PackedScene" uid="uid://d4b3k5fbeh3uf" path="res://Scenes/player_gun.tscn" id="3_vvun3"]
+[ext_resource type="PackedScene" uid="uid://d4b3k5fbeh3uf" path="res://Player/player_gun.tscn" id="3_vvun3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fl46c"]
 size = Vector2(8, 14)
@@ -98,7 +98,9 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 2
 script = ExtResource("1_74ab3")
+metadata/_edit_group_ = true
 
 [node name="Player" type="Sprite2D" parent="."]
 position = Vector2(0, -12)
