@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://df7ptdnqe5sew"]
+[gd_scene load_steps=14 format=3 uid="uid://df7ptdnqe5sew"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_74ab3"]
 [ext_resource type="Texture2D" uid="uid://cx013lfmrlurw" path="res://Assets/Sprites/Player/Player.png" id="1_xygqi"]
@@ -55,6 +55,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_6y4is"]
 resource_name = "Run"
@@ -98,6 +110,44 @@ _data = {
 "Run": SubResource("Animation_6y4is")
 }
 
+[sub_resource type="Animation" id="Animation_qthm3"]
+resource_name = "blink"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true, false, true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [true],
+"method": &"set_invincible"
+}, {
+"args": [false],
+"method": &"set_invincible"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7titp"]
+_data = {
+"blink": SubResource("Animation_qthm3")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v0f3h"]
 size = Vector2(8, 14)
 
@@ -122,6 +172,11 @@ shape = SubResource("RectangleShape2D_fl46c")
 [node name="Sprite_Animator" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_4jp1y")
+}
+
+[node name="Blink_Animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7titp")
 }
 
 [node name="Camera_Follow" type="RemoteTransform2D" parent="."]

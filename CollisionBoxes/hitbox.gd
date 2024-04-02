@@ -4,3 +4,4 @@ extends Area2D
 
 func _on_area_entered(hurtbox):
 	hurtbox.emit_signal("hit", damage)
+	

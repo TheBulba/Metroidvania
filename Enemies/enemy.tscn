@@ -19,9 +19,10 @@ script = ExtResource("1_xio78")
 [node name="Hurtbox" parent="." instance=ExtResource("2_4mgb6")]
 collision_layer = 8
 
-[node name="EnemyStats" parent="." instance=ExtResource("3_l7a13")]
-
 [node name="Hitbox" parent="." instance=ExtResource("4_vcsj5")]
+collision_mask = 4
+
+[node name="EnemyStats" parent="." instance=ExtResource("3_l7a13")]
 
 [connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
 [connection signal="enemydied" from="EnemyStats" to="." method="_on_enemy_stats_enemydied"]

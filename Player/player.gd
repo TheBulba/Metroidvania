@@ -6,6 +6,8 @@ const DUST_EFFECT = preload("res://Effect/dust_effect.tscn")
 const PLAYER_BULLET = preload("res://Player/player_bullet.tscn")
 const JumpEffect = preload("res://Effect/jump_effect.tscn")
 
+var Playerstats = Resourceloader.playerstats
+
 const SPEED = 256
 const MAX_SPEED = 64 
 const FRICTION = 0.25
@@ -21,6 +23,9 @@ var in_air = false
 
 func set_invincible(value):
 	invincible = value
+
+func _ready():
+	Playerstats.playerdied.connect(_ondied)
 
 func _physics_process(delta):
 	
@@ -95,7 +100,6 @@ func coyote_jump():
 			
 func get_animation(x):
 	
-	
 	$Player.scale.x = sign(get_local_mouse_position().x)
 	
 	if x != 0:
@@ -120,6 +124,9 @@ func creat_dust_effect():
 	Utils.instance_scene_on_main(DUST_EFFECT, dust_pos)
 
 func _on_hurtbox_hit(damage):
-	print("hit")
 	if invincible == false:
-		pass
+		Playerstats.set_health(damage)
+		$Blink_Animator.play("blink")
+
+func _ondied():
+	queue_free()
