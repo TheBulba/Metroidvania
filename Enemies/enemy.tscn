@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://t6im623he4tl"]
+[gd_scene load_steps=5 format=3 uid="uid://t6im623he4tl"]
 
 [ext_resource type="Script" path="res://Enemies/enemy.gd" id="1_xio78"]
 [ext_resource type="PackedScene" uid="uid://bv7wkcjm47a5c" path="res://CollisionBoxes/hurtbox.tscn" id="2_4mgb6"]
+[ext_resource type="PackedScene" uid="uid://cyk6rqrmsw1yg" path="res://Enemies/enemy_stats.tscn" id="3_l7a13"]
+[ext_resource type="PackedScene" uid="uid://cn0oklnpnnmdh" path="res://CollisionBoxes/hitbox.tscn" id="4_vcsj5"]
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 0
@@ -17,4 +19,9 @@ script = ExtResource("1_xio78")
 [node name="Hurtbox" parent="." instance=ExtResource("2_4mgb6")]
 collision_layer = 8
 
+[node name="EnemyStats" parent="." instance=ExtResource("3_l7a13")]
+
+[node name="Hitbox" parent="." instance=ExtResource("4_vcsj5")]
+
 [connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
+[connection signal="enemydied" from="EnemyStats" to="." method="_on_enemy_stats_enemydied"]

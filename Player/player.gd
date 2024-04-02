@@ -4,6 +4,8 @@ extends CharacterBody2D
 
 const DUST_EFFECT = preload("res://Effect/dust_effect.tscn")
 const PLAYER_BULLET = preload("res://Player/player_bullet.tscn")
+const JumpEffect = preload("res://Effect/jump_effect.tscn")
+
 const SPEED = 256
 const MAX_SPEED = 64 
 const FRICTION = 0.25
@@ -12,8 +14,13 @@ const JUMP_FORCE = 128.0
 const MAX_JUMP = 168.0
 const BULLET_SPEED = 200
 
+var invincible = false
 var jumpwindow = true
 var jumping = false
+var in_air = false
+
+func set_invincible(value):
+	invincible = value
 
 func _physics_process(delta):
 	
@@ -22,6 +29,7 @@ func _physics_process(delta):
 	gravity(delta)
 	jump()
 	coyote_jump()
+	landed()
 	get_animation(x)
 	
 	floor_snap_length = 2
@@ -63,12 +71,21 @@ func gravity(delta):
 func jump():
 		if is_on_floor() and Input.is_action_just_pressed("ui_up"): 
 			velocity.y = -JUMP_FORCE
-			jumping = true	
+			jumping = true
+			Utils.instance_scene_on_main(JumpEffect, global_position)
 		elif Input.is_action_just_released("ui_up") and velocity.y < -JUMP_FORCE/2:
 			velocity.y = -JUMP_FORCE/2
 		
 		#Added to limit platform boosted
 		velocity.y = clamp(velocity.y, -GRAVITY, MAX_JUMP)
+
+func landed():
+	
+	if is_on_floor() and in_air == true: 
+		Utils.instance_scene_on_main(JumpEffect, global_position)
+		in_air = false
+	elif !is_on_floor():
+		in_air = true
 		
 func coyote_jump():		
 	if !is_on_floor() and $Coyote.time_left > 0 and jumping == false:
@@ -101,3 +118,8 @@ func creat_dust_effect():
 	var dust_pos = global_position
 	dust_pos.x += randf_range(-4,4)
 	Utils.instance_scene_on_main(DUST_EFFECT, dust_pos)
+
+func _on_hurtbox_hit(damage):
+	print("hit")
+	if invincible == false:
+		pass

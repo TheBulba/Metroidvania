@@ -6,6 +6,7 @@ enum DIRECTION{
 }
 
 @export var WALKING_DIRECTION: DIRECTION
+
 var state
 
 func _ready():

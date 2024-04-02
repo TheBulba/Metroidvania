@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyk6rqrmsw1yg"]
+
+[ext_resource type="Script" path="res://Enemies/enemy_stats.gd" id="1_prd4m"]
+
+[node name="EnemyStats" type="Node"]
+script = ExtResource("1_prd4m")

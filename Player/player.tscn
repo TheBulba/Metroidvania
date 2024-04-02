@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://df7ptdnqe5sew"]
+[gd_scene load_steps=12 format=3 uid="uid://df7ptdnqe5sew"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_74ab3"]
 [ext_resource type="Texture2D" uid="uid://cx013lfmrlurw" path="res://Assets/Sprites/Player/Player.png" id="1_xygqi"]
 [ext_resource type="PackedScene" uid="uid://d4b3k5fbeh3uf" path="res://Player/player_gun.tscn" id="3_vvun3"]
+[ext_resource type="PackedScene" uid="uid://bv7wkcjm47a5c" path="res://CollisionBoxes/hurtbox.tscn" id="4_tggvd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fl46c"]
 size = Vector2(8, 14)
@@ -97,6 +98,9 @@ _data = {
 "Run": SubResource("Animation_6y4is")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v0f3h"]
+size = Vector2(8, 14)
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_74ab3")
@@ -132,3 +136,14 @@ one_shot = true
 [node name="BulletTimer" type="Timer" parent="."]
 wait_time = 0.25
 one_shot = true
+
+[node name="Hurtbox" parent="." instance=ExtResource("4_tggvd")]
+collision_layer = 4
+
+[node name="Collider" parent="Hurtbox" index="0"]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_v0f3h")
+
+[connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
+
+[editable path="Hurtbox"]
