@@ -5,6 +5,7 @@ extends CharacterBody2D
 const DUST_EFFECT = preload("res://Effect/dust_effect.tscn")
 const PLAYER_BULLET = preload("res://Player/player_bullet.tscn")
 const JumpEffect = preload("res://Effect/jump_effect.tscn")
+const WALLSLIDE_EFFECT = preload("res://Effect/wall_slide_effect.tscn")
 
 var Playerstats = Resourceloader.playerstats
 
@@ -20,6 +21,14 @@ var invincible = false
 var jumpwindow = true
 var jumping = false
 var in_air = false
+var double_jump = true
+var wall_slide_speed = 48
+var state = MOVE
+
+enum {
+	MOVE,
+	WALL_SLIDE
+}
 
 func set_invincible(value):
 	invincible = value
@@ -29,16 +38,30 @@ func _ready():
 
 func _physics_process(delta):
 	
-	var x = get_input()
-	horizontal_velocity(x, delta)
-	gravity(delta)
-	jump()
-	coyote_jump()
-	landed()
-	get_animation(x)
+	var wall_axis = get_wall_axis()
 	
-	floor_snap_length = 2
-	move_and_slide()
+	match state:
+		MOVE:
+			var x = get_input()
+			horizontal_velocity(x, delta)
+			gravity(delta)
+			jump()
+			coyote_jump()
+			landed()
+			get_animation(x)
+			floor_snap_length = 2
+			move_and_slide()
+			wallslide_check(x, wall_axis)
+		WALL_SLIDE:
+			$Sprite_Animator.play("wall_slide")
+			if wall_axis != 0:
+				$Player.scale.x = wall_axis
+			
+			wall_slide_jump_check(wall_axis)
+			wall_slide_drop_check(delta, wall_axis)
+			wall_slide_fast_slide(delta)
+			move_and_slide()
+			wall_detach_check(wall_axis)
 	
 	#shooting
 	if Input.is_action_pressed("shoot") and $BulletTimer.time_left == 0: 
@@ -72,14 +95,62 @@ func gravity(delta):
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 		velocity.y = min(velocity.y, JUMP_FORCE)
+
+func wallslide_check(x, wall_axis):
+	if is_on_wall_only() and x == -wall_axis:
+		state = WALL_SLIDE
+		double_jump = true
 		
+func get_wall_axis():
+	var is_right_wall = test_move(transform, Vector2.RIGHT)
+	var is_left_wall = test_move(transform, Vector2.LEFT)
+	return int(is_left_wall) - int(is_right_wall) 
+
+func wall_slide_jump_check(wall_axis):
+		if Input.is_action_just_pressed("ui_up"):
+			velocity.x = wall_axis * MAX_SPEED
+			velocity.y = -JUMP_FORCE
+			state = MOVE
+			var dust_pos = global_position + Vector2(wall_axis * 4 ,-2)
+			var dust = Utils.instance_scene_on_main(WALLSLIDE_EFFECT,dust_pos)
+			dust.scale.x = wall_axis
+			
+func wall_slide_drop_check(delta, wall_axis):
+	var x = Input.get_axis("ui_left", "ui_right")
+	
+	if x == -wall_axis:
+		pass
+	else:
+		if Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_left"):
+			velocity.x = x * SPEED * delta
+			state = MOVE
+		else:
+			state = MOVE
+	
+func wall_slide_fast_slide(delta):	
+	var max_slide_speed = wall_slide_speed
+	if Input.is_action_pressed("ui_down"):
+		max_slide_speed = JUMP_FORCE
+	velocity.y += GRAVITY * delta
+	velocity.y = min(velocity.y, max_slide_speed)
+		
+func wall_detach_check(wall_axis):
+	if wall_axis == 0 or is_on_floor():
+		state = MOVE
+
 func jump():
 		if is_on_floor() and Input.is_action_just_pressed("ui_up"): 
+			double_jump = true
 			velocity.y = -JUMP_FORCE
 			jumping = true
 			Utils.instance_scene_on_main(JumpEffect, global_position)
 		elif Input.is_action_just_released("ui_up") and velocity.y < -JUMP_FORCE/2:
 			velocity.y = -JUMP_FORCE/2
+		elif Input.is_action_just_pressed("ui_up") and double_jump == true:
+			jumping = true
+			double_jump = false
+			velocity.y = -JUMP_FORCE * 0.75
+			Utils.instance_scene_on_main(JumpEffect, global_position)
 		
 		#Added to limit platform boosted
 		velocity.y = clamp(velocity.y, -GRAVITY, MAX_JUMP)

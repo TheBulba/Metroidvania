@@ -1,0 +1,10 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://dsp1kmse7cra2"]
+
+[ext_resource type="Texture2D" uid="uid://dly745gis0v1x" path="res://Assets/Sprites/UI/ButtonHoverStylebox.png" id="1_5yrky"]
+
+[resource]
+texture = ExtResource("1_5yrky")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0

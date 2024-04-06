@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cp6qdnavreo0y"]
+[gd_scene load_steps=3 format=3 uid="uid://cp6qdnavreo0y"]
 
 [ext_resource type="PackedScene" uid="uid://bkmtb3dxbnoks" path="res://UI/healthbar.tscn" id="1_r7vdw"]
+[ext_resource type="PackedScene" uid="uid://qf68njq1oloi" path="res://Menus/pause_menu.tscn" id="2_y8eu5"]
 
 [node name="UI" type="CanvasLayer"]
 
@@ -9,3 +10,6 @@ offset_left = 4.0
 offset_top = 4.0
 offset_right = 25.0
 offset_bottom = 16.0
+
+[node name="PauseMenu" parent="." instance=ExtResource("2_y8eu5")]
+visible = false
