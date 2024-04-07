@@ -4,8 +4,11 @@ extends CharacterBody2D
 
 @onready var stats = $EnemyStats
 
+const DEATHEFFECT = preload("res://Effect/enemy_death_effect.tscn")
+
 func _on_hurtbox_hit(damage):
 	stats.set_health(damage)
 
 func _on_enemy_stats_enemydied():
+	Utils.instance_scene_on_main(DEATHEFFECT, global_position)
 	queue_free()

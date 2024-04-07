@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="Maininstances" load_steps=2 format=3 uid="uid://dcbghnij24vw1"]
+
+[ext_resource type="Script" path="res://Maininstances.gd" id="1_8dw5v"]
+
+[resource]
+script = ExtResource("1_8dw5v")

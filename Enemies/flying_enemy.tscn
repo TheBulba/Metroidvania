@@ -1,0 +1,93 @@
+[gd_scene load_steps=10 format=3 uid="uid://c1n6par4a2ham"]
+
+[ext_resource type="PackedScene" uid="uid://t6im623he4tl" path="res://Enemies/enemy.tscn" id="1_5l601"]
+[ext_resource type="Texture2D" uid="uid://cuy1biwtpnfy3" path="res://Assets/Sprites/Enemies/FlyingEnemy.png" id="2_3ke5w"]
+[ext_resource type="Script" path="res://Enemies/flying_enemy.gd" id="2_cbbjm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1wl22"]
+radius = 5.0
+
+[sub_resource type="Animation" id="Animation_jw547"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_3oqnk"]
+resource_name = "fly"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dn6vo"]
+_data = {
+"RESET": SubResource("Animation_jw547"),
+"fly": SubResource("Animation_3oqnk")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vx8g2"]
+radius = 8.06226
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vkndt"]
+radius = 3.0
+
+[node name="Enemy" instance=ExtResource("1_5l601")]
+script = ExtResource("2_cbbjm")
+acceleration = 100
+MAX_SPEED = 40
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_3ke5w")
+flip_h = true
+hframes = 6
+
+[node name="Collider" parent="." index="1"]
+shape = SubResource("CircleShape2D_1wl22")
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_dn6vo")
+}
+autoplay = "fly"
+
+[node name="Collider" parent="Hurtbox" index="0"]
+shape = SubResource("CircleShape2D_vx8g2")
+
+[node name="Collider" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_vkndt")
+
+[node name="EnemyStats" parent="." index="5"]
+max_health = 2
+
+[node name="Top" type="RayCast2D" parent="." index="6"]
+target_position = Vector2(0, -10)
+collision_mask = 2
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="7"]
+position = Vector2(-1.19209e-07, -1.5)
+scale = Vector2(1.2, 1.15)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

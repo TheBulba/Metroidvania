@@ -1,0 +1,87 @@
+[gd_scene load_steps=9 format=3 uid="uid://c3sdanao4pv8h"]
+
+[ext_resource type="PackedScene" uid="uid://t6im623he4tl" path="res://Enemies/enemy.tscn" id="1_fl80l"]
+[ext_resource type="Script" path="res://Enemies/crawling_enemy.gd" id="2_bqf1f"]
+[ext_resource type="Texture2D" uid="uid://criybt4832v5q" path="res://Assets/Sprites/Enemies/CrawlingEnemy.png" id="2_w8isf"]
+
+[sub_resource type="Animation" id="Animation_kywyh"]
+resource_name = "Animate"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_b2lqw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ngqw7"]
+_data = {
+"Animate": SubResource("Animation_kywyh"),
+"RESET": SubResource("Animation_b2lqw")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8dyl4"]
+size = Vector2(16, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_esjdm"]
+size = Vector2(14, 4)
+
+[node name="CrawlingEnemy" instance=ExtResource("1_fl80l")]
+script = ExtResource("2_bqf1f")
+WALKING_DIRECTION = -1
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -8)
+texture = ExtResource("2_w8isf")
+hframes = 4
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_ngqw7")
+}
+autoplay = "Animate"
+
+[node name="Collider" parent="Hurtbox" index="0"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_8dyl4")
+
+[node name="Hitbox" parent="." index="4"]
+position = Vector2(0, -3)
+
+[node name="Collider" parent="Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_esjdm")
+
+[node name="Floor" type="RayCast2D" parent="." index="6"]
+position = Vector2(0, -4)
+target_position = Vector2(0, 8)
+collision_mask = 2
+
+[node name="Wall" type="RayCast2D" parent="." index="7"]
+position = Vector2(0, -4)
+target_position = Vector2(4, 0)
+collision_mask = 2
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

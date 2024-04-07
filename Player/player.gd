@@ -8,6 +8,7 @@ const JumpEffect = preload("res://Effect/jump_effect.tscn")
 const WALLSLIDE_EFFECT = preload("res://Effect/wall_slide_effect.tscn")
 
 var Playerstats = Resourceloader.playerstats
+var Instances = Resourceloader.instances
 
 const SPEED = 256
 const MAX_SPEED = 64 
@@ -35,6 +36,10 @@ func set_invincible(value):
 
 func _ready():
 	Playerstats.playerdied.connect(_ondied)
+	Instances.Player = self
+
+func _exit_tree():
+	Instances.Player = null
 
 func _physics_process(delta):
 	

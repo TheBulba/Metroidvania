@@ -1,0 +1,105 @@
+[gd_scene load_steps=9 format=3 uid="uid://cu833t21gsuj5"]
+
+[ext_resource type="PackedScene" uid="uid://t6im623he4tl" path="res://Enemies/enemy.tscn" id="1_gq42q"]
+[ext_resource type="Script" path="res://Enemies/plant_enemy.gd" id="2_7vucs"]
+[ext_resource type="Texture2D" uid="uid://dappr1wbqituf" path="res://Assets/Sprites/Enemies/PlantEnemy.png" id="2_n7obe"]
+
+[sub_resource type="Animation" id="Animation_hxc8j"]
+resource_name = "plop"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 4, 5, 5]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fire_bullet"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_cirpx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xge6g"]
+_data = {
+"RESET": SubResource("Animation_cirpx"),
+"plop": SubResource("Animation_hxc8j")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7liif"]
+size = Vector2(14, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sq6yn"]
+radius = 6.08276
+
+[node name="PlantEnemy" instance=ExtResource("1_gq42q")]
+script = ExtResource("2_7vucs")
+bullet_speed = 30
+spread = 45.0
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -8)
+texture = ExtResource("2_n7obe")
+hframes = 6
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_xge6g")
+}
+
+[node name="Collider" parent="Hurtbox" index="0"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_7liif")
+
+[node name="Collider" parent="Hitbox" index="0"]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_sq6yn")
+
+[node name="EnemyStats" parent="." index="5"]
+max_health = 3
+
+[node name="Spawn" type="Marker2D" parent="." index="6"]
+position = Vector2(0, -9)
+
+[node name="Direction" type="Marker2D" parent="." index="7"]
+position = Vector2(0, -16)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="8"]
+position = Vector2(0, -8.5)
+scale = Vector2(1, 0.85)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

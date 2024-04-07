@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://bhttw77omhefv"]
+
+[ext_resource type="PackedScene" uid="uid://fwbav4ysn437" path="res://Scenes/projectile.tscn" id="1_whd8l"]
+[ext_resource type="Texture2D" uid="uid://du5pbq24u5gxf" path="res://Assets/Sprites/Enemies/EnemyBullet.png" id="2_octcn"]
+
+[sub_resource type="Animation" id="Animation_qd2be"]
+resource_name = "animate"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_x1rxl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_krfvs"]
+_data = {
+"RESET": SubResource("Animation_x1rxl"),
+"animate": SubResource("Animation_qd2be")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_58d0j"]
+radius = 3.0
+
+[node name="EnemyBullet" instance=ExtResource("1_whd8l")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_octcn")
+hframes = 2
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_krfvs")
+}
+autoplay = "animate"
+
+[node name="Hitbox" parent="." index="3"]
+collision_mask = 6
+
+[node name="Collider" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_58d0j")
+
+[editable path="Hitbox"]
