@@ -8,5 +8,5 @@ signal enemydied
 
 func set_health(damage):
 	health -= damage
-	if health == 0:
+	if health <= 0:
 		emit_signal("enemydied")

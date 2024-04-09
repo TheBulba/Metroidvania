@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cp6qdnavreo0y"]
+[gd_scene load_steps=4 format=3 uid="uid://cp6qdnavreo0y"]
 
 [ext_resource type="PackedScene" uid="uid://bkmtb3dxbnoks" path="res://UI/healthbar.tscn" id="1_r7vdw"]
 [ext_resource type="PackedScene" uid="uid://qf68njq1oloi" path="res://Menus/pause_menu.tscn" id="2_y8eu5"]
+[ext_resource type="PackedScene" uid="uid://udy11ige7iex" path="res://UI/missiles_ui.tscn" id="3_ilox4"]
 
 [node name="UI" type="CanvasLayer"]
 
@@ -13,3 +14,9 @@ offset_bottom = 16.0
 
 [node name="PauseMenu" parent="." instance=ExtResource("2_y8eu5")]
 visible = false
+
+[node name="MissilesUI" parent="." instance=ExtResource("3_ilox4")]
+offset_left = 5.0
+offset_top = 18.0
+offset_right = -299.0
+offset_bottom = -152.0

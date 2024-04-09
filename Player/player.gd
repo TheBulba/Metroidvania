@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 const DUST_EFFECT = preload("res://Effect/dust_effect.tscn")
 const PLAYER_BULLET = preload("res://Player/player_bullet.tscn")
+const PLAYER_MISSILE = preload("res://Player/player_missile.tscn")
 const JumpEffect = preload("res://Effect/jump_effect.tscn")
 const WALLSLIDE_EFFECT = preload("res://Effect/wall_slide_effect.tscn")
 
@@ -17,6 +18,7 @@ const GRAVITY = 200
 const JUMP_FORCE = 128.0
 const MAX_JUMP = 168.0
 const BULLET_SPEED = 200
+const MISSILE_SPEED = 150
 
 var invincible = false
 var jumpwindow = true
@@ -72,6 +74,11 @@ func _physics_process(delta):
 	if Input.is_action_pressed("shoot") and $BulletTimer.time_left == 0: 
 		shoot()
 		$BulletTimer.start()
+		
+	if Input.is_action_pressed("Fire_Missile") and $BulletTimer.time_left == 0: 
+		if Playerstats.missiles > 0:
+			fire_missile()
+			$BulletTimer.start()
 	
 	#Absolute mess which i don't understand why it works
 	if is_on_floor():
@@ -175,8 +182,10 @@ func coyote_jump():
 			jumping = true
 			
 func get_animation(x):
+	var facing = sign(get_local_mouse_position().x)
 	
-	$Player.scale.x = sign(get_local_mouse_position().x)
+	if facing != 0:
+		$Player.scale.x = facing
 	
 	if x != 0:
 		$Sprite_Animator.play("Run")
@@ -193,6 +202,14 @@ func shoot():
 	bullet.velocity = Vector2.RIGHT.rotated($Player/PlayerGun.rotation) * BULLET_SPEED
 	bullet.velocity.x *= $Player.scale.x 
 	bullet.rotation = bullet.velocity.angle()
+	
+func fire_missile():
+	var missile = Utils.instance_scene_on_main(PLAYER_MISSILE, $Player/PlayerGun/PlayerGun/Muzzle.global_position)
+	missile.velocity = Vector2.RIGHT.rotated($Player/PlayerGun.rotation) * MISSILE_SPEED
+	missile.velocity.x *= $Player.scale.x 
+	velocity -= missile.velocity * 0.25
+	missile.rotation = missile.velocity.angle()
+	Playerstats.set_missiles(1)
 	
 func creat_dust_effect():
 	var dust_pos = global_position
