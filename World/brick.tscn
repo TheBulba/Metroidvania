@@ -6,11 +6,13 @@
 size = Vector2(16, 16)
 
 [node name="Brick" type="StaticBody2D"]
+collision_layer = 18
+collision_mask = 0
 
 [node name="Brick" type="Sprite2D" parent="."]
 texture = ExtResource("1_rmhxl")
 centered = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_52ktd")
