@@ -28,6 +28,8 @@ var double_jump = true
 var wall_slide_speed = 48
 var state = MOVE
 
+signal hit_door(door)
+
 enum {
 	MOVE,
 	WALL_SLIDE
@@ -76,7 +78,7 @@ func _physics_process(delta):
 		$BulletTimer.start()
 		
 	if Input.is_action_pressed("Fire_Missile") and $BulletTimer.time_left == 0: 
-		if Playerstats.missiles > 0:
+		if Playerstats.missiles > 0 and Playerstats.missiles_unlocked:
 			fire_missile()
 			$BulletTimer.start()
 	
@@ -209,7 +211,7 @@ func fire_missile():
 	missile.velocity.x *= $Player.scale.x 
 	velocity -= missile.velocity * 0.25
 	missile.rotation = missile.velocity.angle()
-	Playerstats.set_missiles(1)
+	Playerstats.set_missiles(-1)
 	
 func creat_dust_effect():
 	var dust_pos = global_position
@@ -223,3 +225,8 @@ func _on_hurtbox_hit(damage):
 
 func _ondied():
 	queue_free()
+
+func _on_power_up_detector_area_entered(area):
+	if area is PowerUp:
+		area._pickup()
+

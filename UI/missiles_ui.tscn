@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://cx8766er10r8s" path="res://Assets/Fonts/Pixel.tres" id="2_jlhu1"]
 
 [node name="MissilesUI" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
