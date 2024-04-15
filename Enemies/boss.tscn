@@ -1,0 +1,131 @@
+[gd_scene load_steps=10 format=3 uid="uid://bsflyqhd56u4y"]
+
+[ext_resource type="PackedScene" uid="uid://t6im623he4tl" path="res://Enemies/enemy.tscn" id="1_51k76"]
+[ext_resource type="Texture2D" uid="uid://b0awi1bcmyqme" path="res://Assets/Sprites/Enemies/BossEnemyBody.png" id="3_oi8io"]
+[ext_resource type="Texture2D" uid="uid://cnltt28mn0ra5" path="res://Assets/Sprites/Enemies/BossEnemyHead.png" id="4_un5te"]
+[ext_resource type="Texture2D" uid="uid://u56pl612fix" path="res://Assets/Sprites/Enemies/BossEnemyWing.png" id="5_qmq03"]
+[ext_resource type="Texture2D" uid="uid://d14f5gyhx0ge2" path="res://Assets/Sprites/Enemies/BossEnemyLeg1.png" id="6_cs01l"]
+[ext_resource type="Texture2D" uid="uid://r32evyrudhtl" path="res://Assets/Sprites/Enemies/BossEnemyLeg2.png" id="7_dciw5"]
+[ext_resource type="Texture2D" uid="uid://b1s6ee4kack86" path="res://Assets/Sprites/Enemies/BossEnemyLeg3.png" id="8_w6yni"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wou2i"]
+radius = 16.0
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_762ne"]
+length = 16.0
+
+[node name="Boss" instance=ExtResource("1_51k76")]
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(-0.5, 0)
+texture = ExtResource("3_oi8io")
+
+[node name="Head" type="Sprite2D" parent="Sprite2D" index="0"]
+position = Vector2(0.5, -7)
+texture = ExtResource("4_un5te")
+
+[node name="LeftWing" type="Sprite2D" parent="Sprite2D" index="1"]
+show_behind_parent = true
+position = Vector2(-10, -17)
+texture = ExtResource("5_qmq03")
+offset = Vector2(-21, -5)
+
+[node name="RightWing" type="Sprite2D" parent="Sprite2D" index="2"]
+show_behind_parent = true
+position = Vector2(11, -17.5)
+texture = ExtResource("5_qmq03")
+offset = Vector2(21, -5)
+flip_h = true
+
+[node name="RightUpperLeg" type="Sprite2D" parent="Sprite2D" index="3"]
+position = Vector2(12, -12)
+texture = ExtResource("6_cs01l")
+offset = Vector2(5, 1)
+flip_h = true
+
+[node name="MiddleSegment" type="Sprite2D" parent="Sprite2D/RightUpperLeg" index="0"]
+position = Vector2(12, 3)
+texture = ExtResource("7_dciw5")
+offset = Vector2(3, 4)
+flip_h = true
+
+[node name="EndSegment" type="Sprite2D" parent="Sprite2D/RightUpperLeg/MiddleSegment" index="0"]
+position = Vector2(6, 10)
+rotation = -0.261799
+texture = ExtResource("8_w6yni")
+offset = Vector2(-1, 2)
+flip_h = true
+
+[node name="EndPoint" type="Marker2D" parent="Sprite2D/RightUpperLeg/MiddleSegment/EndSegment" index="0"]
+
+[node name="LeftLowerLeg" type="Sprite2D" parent="Sprite2D" index="4"]
+position = Vector2(-9, 0)
+rotation = -0.261799
+texture = ExtResource("6_cs01l")
+offset = Vector2(-4, 1)
+
+[node name="MiddleSegment" type="Sprite2D" parent="Sprite2D/LeftLowerLeg" index="0"]
+position = Vector2(-12, 3)
+rotation = -0.436332
+texture = ExtResource("7_dciw5")
+offset = Vector2(-2, 4)
+
+[node name="EndSegment" type="Sprite2D" parent="Sprite2D/LeftLowerLeg/MiddleSegment" index="0"]
+position = Vector2(-6, 10)
+texture = ExtResource("8_w6yni")
+offset = Vector2(1, 2)
+
+[node name="EndPoint" type="Marker2D" parent="Sprite2D/LeftLowerLeg/MiddleSegment/EndSegment" index="0"]
+
+[node name="RightLowerLeg" type="Sprite2D" parent="Sprite2D" index="5"]
+position = Vector2(9, 0)
+rotation = 0.261799
+texture = ExtResource("6_cs01l")
+offset = Vector2(5, 1)
+flip_h = true
+
+[node name="MiddleSegment" type="Sprite2D" parent="Sprite2D/RightLowerLeg" index="0"]
+position = Vector2(12, 3)
+rotation = 0.436332
+texture = ExtResource("7_dciw5")
+offset = Vector2(3, 4)
+flip_h = true
+
+[node name="EndSegment" type="Sprite2D" parent="Sprite2D/RightLowerLeg/MiddleSegment" index="0"]
+position = Vector2(6, 10)
+texture = ExtResource("8_w6yni")
+offset = Vector2(-1, 2)
+flip_h = true
+
+[node name="EndPoint" type="Marker2D" parent="Sprite2D/RightLowerLeg/MiddleSegment/EndSegment" index="0"]
+
+[node name="LeftUpperLeg" type="Sprite2D" parent="Sprite2D" index="6"]
+position = Vector2(-12, -12)
+texture = ExtResource("6_cs01l")
+offset = Vector2(-4, 1)
+
+[node name="MiddleSegment" type="Sprite2D" parent="Sprite2D/LeftUpperLeg" index="0"]
+position = Vector2(-12, 3)
+texture = ExtResource("7_dciw5")
+offset = Vector2(-2, 4)
+
+[node name="EndSegment" type="Sprite2D" parent="Sprite2D/LeftUpperLeg/MiddleSegment" index="0"]
+position = Vector2(-6, 10)
+rotation = 0.261799
+texture = ExtResource("8_w6yni")
+offset = Vector2(1, 2)
+
+[node name="EndPoint" type="Marker2D" parent="Sprite2D/LeftUpperLeg/MiddleSegment/EndSegment" index="0"]
+
+[node name="Collider" parent="Hurtbox" index="0"]
+position = Vector2(-0.5, -7)
+shape = SubResource("CircleShape2D_wou2i")
+
+[node name="Collider" parent="Hitbox" index="0"]
+shape = SubResource("SeparationRayShape2D_762ne")
+
+[node name="EnemyStats" parent="." index="5"]
+max_health = 100
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]
