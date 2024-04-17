@@ -38,48 +38,47 @@ offset = Vector2(21, -5)
 flip_h = true
 
 [node name="RightUpperLeg" type="Sprite2D" parent="Sprite2D" index="3"]
-position = Vector2(12, -12)
+position = Vector2(10.5, -13)
 texture = ExtResource("6_cs01l")
 offset = Vector2(5, 1)
 flip_h = true
 
 [node name="MiddleSegment" type="Sprite2D" parent="Sprite2D/RightUpperLeg" index="0"]
-position = Vector2(12, 3)
+position = Vector2(13, 4)
 texture = ExtResource("7_dciw5")
 offset = Vector2(3, 4)
 flip_h = true
 
 [node name="EndSegment" type="Sprite2D" parent="Sprite2D/RightUpperLeg/MiddleSegment" index="0"]
-position = Vector2(6, 10)
-rotation = -0.261799
+position = Vector2(6, 9)
 texture = ExtResource("8_w6yni")
 offset = Vector2(-1, 2)
 flip_h = true
 
 [node name="EndPoint" type="Marker2D" parent="Sprite2D/RightUpperLeg/MiddleSegment/EndSegment" index="0"]
 
-[node name="LeftLowerLeg" type="Sprite2D" parent="Sprite2D" index="4"]
-position = Vector2(-9, 0)
-rotation = -0.261799
+[node name="LeftUpperLeg" type="Sprite2D" parent="Sprite2D" index="4"]
+position = Vector2(-12, -12)
 texture = ExtResource("6_cs01l")
 offset = Vector2(-4, 1)
 
-[node name="MiddleSegment" type="Sprite2D" parent="Sprite2D/LeftLowerLeg" index="0"]
+[node name="MiddleSegment" type="Sprite2D" parent="Sprite2D/LeftUpperLeg" index="0"]
 position = Vector2(-12, 3)
-rotation = -0.436332
 texture = ExtResource("7_dciw5")
 offset = Vector2(-2, 4)
 
-[node name="EndSegment" type="Sprite2D" parent="Sprite2D/LeftLowerLeg/MiddleSegment" index="0"]
+[node name="EndSegment" type="Sprite2D" parent="Sprite2D/LeftUpperLeg/MiddleSegment" index="0"]
 position = Vector2(-6, 10)
+rotation = 0.261799
 texture = ExtResource("8_w6yni")
 offset = Vector2(1, 2)
 
-[node name="EndPoint" type="Marker2D" parent="Sprite2D/LeftLowerLeg/MiddleSegment/EndSegment" index="0"]
+[node name="EndPoint" type="Marker2D" parent="Sprite2D/LeftUpperLeg/MiddleSegment/EndSegment" index="0"]
 
 [node name="RightLowerLeg" type="Sprite2D" parent="Sprite2D" index="5"]
-position = Vector2(9, 0)
+position = Vector2(9, 2.38419e-06)
 rotation = 0.261799
+scale = Vector2(1, 1)
 texture = ExtResource("6_cs01l")
 offset = Vector2(5, 1)
 flip_h = true
@@ -99,27 +98,37 @@ flip_h = true
 
 [node name="EndPoint" type="Marker2D" parent="Sprite2D/RightLowerLeg/MiddleSegment/EndSegment" index="0"]
 
-[node name="LeftUpperLeg" type="Sprite2D" parent="Sprite2D" index="6"]
-position = Vector2(-12, -12)
+[node name="LeftLowerLeg" type="Sprite2D" parent="Sprite2D" index="6"]
+position = Vector2(-9, 0)
+rotation = -0.261799
 texture = ExtResource("6_cs01l")
 offset = Vector2(-4, 1)
 
-[node name="MiddleSegment" type="Sprite2D" parent="Sprite2D/LeftUpperLeg" index="0"]
+[node name="MiddleSegment" type="Sprite2D" parent="Sprite2D/LeftLowerLeg" index="0"]
 position = Vector2(-12, 3)
+rotation = -0.436332
 texture = ExtResource("7_dciw5")
 offset = Vector2(-2, 4)
 
-[node name="EndSegment" type="Sprite2D" parent="Sprite2D/LeftUpperLeg/MiddleSegment" index="0"]
+[node name="EndSegment" type="Sprite2D" parent="Sprite2D/LeftLowerLeg/MiddleSegment" index="0"]
 position = Vector2(-6, 10)
-rotation = 0.261799
 texture = ExtResource("8_w6yni")
 offset = Vector2(1, 2)
 
-[node name="EndPoint" type="Marker2D" parent="Sprite2D/LeftUpperLeg/MiddleSegment/EndSegment" index="0"]
+[node name="EndPoint" type="Marker2D" parent="Sprite2D/LeftLowerLeg/MiddleSegment/EndSegment" index="0"]
+
+[node name="Collider" parent="." index="1"]
+visible = false
+
+[node name="Hurtbox" parent="." index="3"]
+visible = false
 
 [node name="Collider" parent="Hurtbox" index="0"]
 position = Vector2(-0.5, -7)
 shape = SubResource("CircleShape2D_wou2i")
+
+[node name="Hitbox" parent="." index="4"]
+visible = false
 
 [node name="Collider" parent="Hitbox" index="0"]
 shape = SubResource("SeparationRayShape2D_762ne")
