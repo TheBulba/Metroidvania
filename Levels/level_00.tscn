@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://8p2nq1pfroin"]
+[gd_scene load_steps=4 format=3 uid="uid://8p2nq1pfroin"]
 
 [ext_resource type="PackedScene" uid="uid://c6130sd2jxppg" path="res://Levels/level.tscn" id="1_4nq4o"]
 [ext_resource type="PackedScene" uid="uid://cr7wp60wqmec7" path="res://Levels/door.tscn" id="2_lrh1y"]
+[ext_resource type="PackedScene" uid="uid://bowtobc6q21xb" path="res://World/spike.tscn" id="3_ggmxe"]
 
 [node name="Level_00" instance=ExtResource("1_4nq4o")]
 
@@ -11,3 +12,74 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 65536, 0, 65536, 393216, 2, 131
 [node name="Door" parent="." index="1" instance=ExtResource("2_lrh1y")]
 position = Vector2(360, 144)
 new_level_path = "res://Levels/level_01.tscn"
+
+[node name="Spike" type="Node2D" parent="." index="2"]
+
+[node name="Spike" parent="Spike" index="0" instance=ExtResource("3_ggmxe")]
+position = Vector2(128, 96)
+rotation = 3.14159
+
+[node name="Spike2" parent="Spike" index="1" instance=ExtResource("3_ggmxe")]
+position = Vector2(144, 111)
+rotation = 3.14159
+
+[node name="Spike3" parent="Spike" index="2" instance=ExtResource("3_ggmxe")]
+position = Vector2(64, 48)
+rotation = 3.14159
+
+[node name="Spike5" parent="Spike" index="3" instance=ExtResource("3_ggmxe")]
+position = Vector2(32, 64)
+rotation = 3.14159
+
+[node name="Spike6" parent="Spike" index="4" instance=ExtResource("3_ggmxe")]
+position = Vector2(16, 96)
+rotation = 3.14159
+
+[node name="Spike7" parent="Spike" index="5" instance=ExtResource("3_ggmxe")]
+position = Vector2(177, 80)
+rotation = 3.14159
+
+[node name="Spike8" parent="Spike" index="6" instance=ExtResource("3_ggmxe")]
+position = Vector2(192, 80)
+rotation = 3.14159
+
+[node name="Spike9" parent="Spike" index="7" instance=ExtResource("3_ggmxe")]
+position = Vector2(256, 96)
+rotation = 3.14159
+
+[node name="Spike10" parent="Spike" index="8" instance=ExtResource("3_ggmxe")]
+position = Vector2(240, 112)
+rotation = 3.14159
+
+[node name="Spike11" parent="Spike" index="9" instance=ExtResource("3_ggmxe")]
+position = Vector2(320, 112)
+rotation = 3.14159
+
+[node name="Spike12" parent="Spike" index="10" instance=ExtResource("3_ggmxe")]
+position = Vector2(191, 176)
+
+[node name="Spike13" parent="Spike" index="11" instance=ExtResource("3_ggmxe")]
+position = Vector2(206, 176)
+
+[node name="Spike14" parent="Spike" index="12" instance=ExtResource("3_ggmxe")]
+position = Vector2(175, 160)
+
+[node name="Spike15" parent="Spike" index="13" instance=ExtResource("3_ggmxe")]
+position = Vector2(16, 112)
+rotation = 1.57078
+
+[node name="Spike16" parent="Spike" index="14" instance=ExtResource("3_ggmxe")]
+position = Vector2(16, 128)
+rotation = 1.57078
+
+[node name="Spike17" parent="Spike" index="15" instance=ExtResource("3_ggmxe")]
+position = Vector2(48, 144)
+rotation = 1.57078
+
+[node name="Spike18" parent="Spike" index="16" instance=ExtResource("3_ggmxe")]
+position = Vector2(48, 144)
+rotation = 1.57078
+
+[node name="Spike4" parent="Spike" index="17" instance=ExtResource("3_ggmxe")]
+position = Vector2(48, 48)
+rotation = 3.14159

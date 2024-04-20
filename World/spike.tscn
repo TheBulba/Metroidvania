@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bowtobc6q21xb"]
+
+[ext_resource type="Texture2D" uid="uid://vjbvruq13s2f" path="res://Assets/Sprites/Enemies/Spikes.png" id="1_hk81b"]
+[ext_resource type="PackedScene" uid="uid://cn0oklnpnnmdh" path="res://CollisionBoxes/hitbox.tscn" id="2_fcph3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nr7sr"]
+size = Vector2(10, 12)
+
+[node name="Spike" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hk81b")
+centered = false
+
+[node name="Hitbox" parent="." instance=ExtResource("2_fcph3")]
+collision_mask = 4
+
+[node name="Collider" parent="Hitbox" index="0"]
+position = Vector2(8, 9)
+shape = SubResource("RectangleShape2D_nr7sr")
+
+[editable path="Hitbox"]
