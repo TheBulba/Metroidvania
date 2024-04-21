@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://dl88abhl5olwo"]
+
+[ext_resource type="Texture2D" uid="uid://blqt2cwtscx67" path="res://Assets/Sprites/World/Tileset.png" id="1_8rom1"]
+[ext_resource type="Script" path="res://World/block_door.gd" id="1_fvquy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bhdwn"]
+size = Vector2(16, 32)
+
+[node name="BlockDoor" type="StaticBody2D"]
+position = Vector2(1, 0)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_fvquy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(7, 8)
+texture = ExtResource("1_8rom1")
+hframes = 11
+vframes = 5
+frame = 3
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(7, 24)
+texture = ExtResource("1_8rom1")
+hframes = 11
+vframes = 5
+frame = 25
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(7, 16)
+shape = SubResource("RectangleShape2D_bhdwn")

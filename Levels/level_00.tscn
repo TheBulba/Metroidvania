@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://8p2nq1pfroin"]
+[gd_scene load_steps=5 format=3 uid="uid://8p2nq1pfroin"]
 
 [ext_resource type="PackedScene" uid="uid://c6130sd2jxppg" path="res://Levels/level.tscn" id="1_4nq4o"]
 [ext_resource type="PackedScene" uid="uid://cr7wp60wqmec7" path="res://Levels/door.tscn" id="2_lrh1y"]
 [ext_resource type="PackedScene" uid="uid://bowtobc6q21xb" path="res://World/spike.tscn" id="3_ggmxe"]
+[ext_resource type="Resource" uid="uid://bmyeff7ls2v0y" path="res://DoorConnections/00_link_01.tres" id="3_uiwg4"]
 
 [node name="Level_00" instance=ExtResource("1_4nq4o")]
 
@@ -11,6 +12,7 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 65536, 0, 65536, 393216, 2, 131
 
 [node name="Door" parent="." index="1" instance=ExtResource("2_lrh1y")]
 position = Vector2(360, 144)
+connection = ExtResource("3_uiwg4")
 new_level_path = "res://Levels/level_01.tscn"
 
 [node name="Spike" type="Node2D" parent="." index="2"]

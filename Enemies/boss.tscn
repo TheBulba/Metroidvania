@@ -977,7 +977,7 @@ shape = SubResource("CircleShape2D_wou2i")
 shape = SubResource("SeparationRayShape2D_762ne")
 
 [node name="EnemyStats" parent="." index="5"]
-max_health = 100
+max_health = 10
 
 [node name="RightCheck" type="RayCast2D" parent="." index="6"]
 target_position = Vector2(16, 0)
@@ -991,7 +991,17 @@ collision_mask = 2
 wait_time = 0.3
 autostart = true
 
+[node name="Dash" type="Timer" parent="." index="9"]
+wait_time = 15.0
+autostart = true
+
+[node name="Finish" type="Timer" parent="." index="10"]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Dash" to="." method="_on_dash_timeout"]
+[connection signal="timeout" from="Finish" to="." method="_on_finish_timeout"]
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]
