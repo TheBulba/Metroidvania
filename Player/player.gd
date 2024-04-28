@@ -41,6 +41,7 @@ func set_invincible(value):
 func _ready():
 	Playerstats.playerdied.connect(_ondied)
 	Instances.Player = self
+	call_deferred("assign_camera")
 
 func _exit_tree():
 	Instances.Player = null
@@ -89,10 +90,7 @@ func _physics_process(delta):
 	elif jumping == false and jumpwindow == true and !is_on_floor() :
 		jumpwindow = false
 		$Coyote.start()
-			
-	# For Future Debugging
-	#print(jumping)
-	#print($Coyote.time_left)
+
 	
 func get_input():
 	var x = Input.get_axis("ui_left", "ui_right")
@@ -230,3 +228,14 @@ func _on_power_up_detector_area_entered(area):
 	if area is PowerUp:
 		area._pickup()
 
+func save():
+	var save_dictionary = {
+		"filename" : get_scene_file_path(),
+		"parent": get_parent().get_path(),
+		"position_x" : position.x,
+		"position_y" : position.y
+	}
+	return save_dictionary
+
+func assign_camera():
+	$Camera_Follow.remote_path = Resourceloader.instances.Camera.get_path()

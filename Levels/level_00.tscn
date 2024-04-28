@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://8p2nq1pfroin"]
+[gd_scene load_steps=6 format=3 uid="uid://8p2nq1pfroin"]
 
 [ext_resource type="PackedScene" uid="uid://c6130sd2jxppg" path="res://Levels/level.tscn" id="1_4nq4o"]
 [ext_resource type="PackedScene" uid="uid://cr7wp60wqmec7" path="res://Levels/door.tscn" id="2_lrh1y"]
 [ext_resource type="PackedScene" uid="uid://bowtobc6q21xb" path="res://World/spike.tscn" id="3_ggmxe"]
 [ext_resource type="Resource" uid="uid://bmyeff7ls2v0y" path="res://DoorConnections/00_link_01.tres" id="3_uiwg4"]
+[ext_resource type="PackedScene" uid="uid://bhh34q5rhwm1x" path="res://World/save_station.tscn" id="5_77x60"]
 
 [node name="Level_00" instance=ExtResource("1_4nq4o")]
 
@@ -85,3 +86,6 @@ rotation = 1.57078
 [node name="Spike4" parent="Spike" index="17" instance=ExtResource("3_ggmxe")]
 position = Vector2(48, 48)
 rotation = 3.14159
+
+[node name="SaveStation" parent="." index="3" instance=ExtResource("5_77x60")]
+position = Vector2(66, 160)

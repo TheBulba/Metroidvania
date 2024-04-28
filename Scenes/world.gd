@@ -6,6 +6,11 @@ var MainInstances = Resourceloader.instances
 
 func _ready():
 	RenderingServer.set_default_clear_color(Color.BLACK)
+	
+	if SaverAndLoader.is_loading == true:
+		SaverAndLoader.Load_Game()
+		SaverAndLoader.is_loading = false
+		
 	MainInstances.Player.hit_door.connect(_player_hit_door)
 
 

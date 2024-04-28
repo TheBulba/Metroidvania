@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b3ei1hanbr8w"]
+[gd_scene load_steps=14 format=3 uid="uid://b3ei1hanbr8w"]
 
 [ext_resource type="PackedScene" uid="uid://c6130sd2jxppg" path="res://Levels/level.tscn" id="1_44ebu"]
 [ext_resource type="PackedScene" uid="uid://cr7wp60wqmec7" path="res://Levels/door.tscn" id="2_c5fhl"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://mixdeckw2671" path="res://Enemies/walking_enemy.tscn" id="8_lpmfn"]
 [ext_resource type="PackedScene" uid="uid://duhqt6hm7tae6" path="res://Scenes/moving_platform_1.tscn" id="9_csakb"]
 [ext_resource type="PackedScene" uid="uid://bowtobc6q21xb" path="res://World/spike.tscn" id="10_3pti7"]
+[ext_resource type="PackedScene" uid="uid://bhh34q5rhwm1x" path="res://World/save_station.tscn" id="13_psj4d"]
 
 [node name="Level_01" instance=ExtResource("1_44ebu")]
 
@@ -117,102 +118,102 @@ rotation = -1.57079
 position = Vector2(816, 125)
 rotation = -1.57079
 
-[node name="Spike9" parent="Spikes" index="8" instance=ExtResource("10_3pti7")]
-position = Vector2(784, 288)
+[node name="Spike10" parent="Spikes" index="8" instance=ExtResource("10_3pti7")]
+position = Vector2(816, 288)
 
-[node name="Spike10" parent="Spikes" index="9" instance=ExtResource("10_3pti7")]
-position = Vector2(799, 289)
-
-[node name="Spike11" parent="Spikes" index="10" instance=ExtResource("10_3pti7")]
+[node name="Spike11" parent="Spikes" index="9" instance=ExtResource("10_3pti7")]
 position = Vector2(784, 256)
 rotation = 1.57079
 
-[node name="Spike12" parent="Spikes" index="11" instance=ExtResource("10_3pti7")]
+[node name="Spike12" parent="Spikes" index="10" instance=ExtResource("10_3pti7")]
 position = Vector2(656, 160)
 rotation = -1.57081
 
-[node name="Spike14" parent="Spikes" index="12" instance=ExtResource("10_3pti7")]
+[node name="Spike14" parent="Spikes" index="11" instance=ExtResource("10_3pti7")]
 position = Vector2(656, 160)
 rotation = -1.57081
 
-[node name="Spike13" parent="Spikes" index="13" instance=ExtResource("10_3pti7")]
+[node name="Spike13" parent="Spikes" index="12" instance=ExtResource("10_3pti7")]
 position = Vector2(656, 192)
 rotation = -1.57081
 
-[node name="Spike15" parent="Spikes" index="14" instance=ExtResource("10_3pti7")]
+[node name="Spike15" parent="Spikes" index="13" instance=ExtResource("10_3pti7")]
 position = Vector2(656, 176)
 rotation = -1.57081
 
-[node name="Spike16" parent="Spikes" index="15" instance=ExtResource("10_3pti7")]
+[node name="Spike16" parent="Spikes" index="14" instance=ExtResource("10_3pti7")]
 position = Vector2(656, 207)
 rotation = -1.57081
 
-[node name="Spike17" parent="Spikes" index="16" instance=ExtResource("10_3pti7")]
+[node name="Spike17" parent="Spikes" index="15" instance=ExtResource("10_3pti7")]
 position = Vector2(592, 144)
 rotation = 1.57079
 
-[node name="Spike18" parent="Spikes" index="17" instance=ExtResource("10_3pti7")]
+[node name="Spike18" parent="Spikes" index="16" instance=ExtResource("10_3pti7")]
 position = Vector2(560, 80)
 rotation = 1.57079
 
-[node name="Spike19" parent="Spikes" index="18" instance=ExtResource("10_3pti7")]
+[node name="Spike19" parent="Spikes" index="17" instance=ExtResource("10_3pti7")]
 position = Vector2(400, 144)
 rotation = -1.57079
 
-[node name="Spike20" parent="Spikes" index="19" instance=ExtResource("10_3pti7")]
+[node name="Spike20" parent="Spikes" index="18" instance=ExtResource("10_3pti7")]
 position = Vector2(400, 128)
 rotation = -1.57079
 
-[node name="Spike21" parent="Spikes" index="20" instance=ExtResource("10_3pti7")]
+[node name="Spike21" parent="Spikes" index="19" instance=ExtResource("10_3pti7")]
 position = Vector2(368, 80)
 rotation = -1.57079
 
-[node name="Spike22" parent="Spikes" index="21" instance=ExtResource("10_3pti7")]
+[node name="Spike22" parent="Spikes" index="20" instance=ExtResource("10_3pti7")]
 position = Vector2(176, 81)
 rotation = -3.14159
 
-[node name="Spike30" parent="Spikes" index="22" instance=ExtResource("10_3pti7")]
+[node name="Spike30" parent="Spikes" index="21" instance=ExtResource("10_3pti7")]
 position = Vector2(192, 81)
 rotation = -3.14159
 
-[node name="Spike31" parent="Spikes" index="23" instance=ExtResource("10_3pti7")]
+[node name="Spike31" parent="Spikes" index="22" instance=ExtResource("10_3pti7")]
 position = Vector2(240, 288)
 rotation = 1.57081
 
-[node name="Spike32" parent="Spikes" index="24" instance=ExtResource("10_3pti7")]
+[node name="Spike32" parent="Spikes" index="23" instance=ExtResource("10_3pti7")]
 position = Vector2(224, 223)
 rotation = 1.57081
 
-[node name="Spike33" parent="Spikes" index="25" instance=ExtResource("10_3pti7")]
+[node name="Spike33" parent="Spikes" index="24" instance=ExtResource("10_3pti7")]
 position = Vector2(224, 239)
 rotation = 1.57081
 
-[node name="Spike29" parent="Spikes" index="26" instance=ExtResource("10_3pti7")]
+[node name="Spike29" parent="Spikes" index="25" instance=ExtResource("10_3pti7")]
 position = Vector2(256, 48)
 rotation = -3.14159
 
-[node name="Spike23" parent="Spikes" index="27" instance=ExtResource("10_3pti7")]
+[node name="Spike23" parent="Spikes" index="26" instance=ExtResource("10_3pti7")]
 position = Vector2(272, 48)
 rotation = -3.14159
 
-[node name="Spike24" parent="Spikes" index="28" instance=ExtResource("10_3pti7")]
+[node name="Spike24" parent="Spikes" index="27" instance=ExtResource("10_3pti7")]
 position = Vector2(288, 48)
 rotation = -3.14159
 
-[node name="Spike25" parent="Spikes" index="29" instance=ExtResource("10_3pti7")]
+[node name="Spike25" parent="Spikes" index="28" instance=ExtResource("10_3pti7")]
 position = Vector2(304, 48)
 rotation = -3.14159
 
-[node name="Spike26" parent="Spikes" index="30" instance=ExtResource("10_3pti7")]
+[node name="Spike26" parent="Spikes" index="29" instance=ExtResource("10_3pti7")]
 position = Vector2(320, 48)
 rotation = -3.14159
 
-[node name="Spike27" parent="Spikes" index="31" instance=ExtResource("10_3pti7")]
+[node name="Spike27" parent="Spikes" index="30" instance=ExtResource("10_3pti7")]
 position = Vector2(336, 48)
 rotation = -3.14159
 
-[node name="Spike28" parent="Spikes" index="32" instance=ExtResource("10_3pti7")]
+[node name="Spike28" parent="Spikes" index="31" instance=ExtResource("10_3pti7")]
 position = Vector2(336, 48)
 rotation = -3.14159
+
+[node name="SaveStation" parent="." index="7" instance=ExtResource("13_psj4d")]
+position = Vector2(797, 304)
 
 [editable path="World/MovingPlatform_1"]
