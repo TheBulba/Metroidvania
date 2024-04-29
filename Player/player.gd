@@ -40,11 +40,9 @@ func set_invincible(value):
 
 func _ready():
 	Playerstats.playerdied.connect(_ondied)
+	Playerstats.set_missiles_unlock(SaverAndLoader.custom_data.MISSILES_UNLOCKED)
 	Instances.Player = self
 	call_deferred("assign_camera")
-
-func _exit_tree():
-	Instances.Player = null
 
 func _physics_process(delta):
 	
@@ -223,6 +221,7 @@ func _on_hurtbox_hit(damage):
 
 func _ondied():
 	queue_free()
+	Instances.Player = null
 
 func _on_power_up_detector_area_entered(area):
 	if area is PowerUp:

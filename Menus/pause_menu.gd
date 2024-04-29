@@ -15,10 +15,5 @@ func _process(delta):
 func _on_resume_pressed():
 	set_paused(false)
 
-
-func _on_respawn_pressed():
-	pass # Replace with function body.
-
-
 func _on_quit_pressed():
 	get_tree().quit()

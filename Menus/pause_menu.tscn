@@ -41,16 +41,10 @@ custom_minimum_size = Vector2(64, 16)
 layout_mode = 2
 text = "Resume"
 
-[node name="Respawn" type="Button" parent="CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(64, 16)
-layout_mode = 2
-text = "Respawn (WIP)"
-
 [node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(64, 16)
 layout_mode = 2
 text = "Quit"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Respawn" to="." method="_on_respawn_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

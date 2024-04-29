@@ -15,6 +15,10 @@ enum {
 
 var state = MOVE
 
+func _ready():
+	if SaverAndLoader.custom_data.BOSS_DEFEATED == true:
+		queue_free()
+
 func _physics_process(delta):
 	
 	match state:
@@ -22,8 +26,6 @@ func _physics_process(delta):
 			chase_player(delta)
 		ATTACK:
 			pass
-			
-	print(global_position.y)
 			
 	move_and_slide()
 
@@ -74,4 +76,5 @@ func _on_finish_timeout():
 
 func _on_enemy_stats_enemydied():
 	emit_signal("died")
+	SaverAndLoader.custom_data.BOSS_DEFEATED = true
 	super._on_enemy_stats_enemydied()

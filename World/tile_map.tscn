@@ -519,6 +519,6 @@ terrain_set_0/terrain_0/color = Color(0.945098, 0.301961, 0, 1)
 sources/0 = SubResource("TileSetAtlasSource_ch2im")
 sources/1 = SubResource("TileSetAtlasSource_u172x")
 
-[node name="TileMap" type="TileMap"]
+[node name="TileMap" type="TileMap" groups=["Tilemap"]]
 tile_set = SubResource("TileSet_10462")
 format = 2
