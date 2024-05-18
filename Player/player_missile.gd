@@ -4,8 +4,10 @@ const EFFECT = preload("res://Effect/enemy_death_effect.tscn")
 
 const BRICK_LAYER_BIT =  18
 
+func _ready():
+	SoundFx.play("Bullet", 1, -10)
+
 func _on_hitbox_body_entered(body):
-	print(body)
 	if body.is_in_group("Tilemap"):
 		super._on_hitbox_body_entered(body)
 	else:

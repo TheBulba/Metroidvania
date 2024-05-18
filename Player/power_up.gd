@@ -4,4 +4,4 @@ class_name PowerUp
 var playerstats = Resourceloader.playerstats
 
 func _pickup():
-	pass
+	SoundFx.play("PowerUp", 1 , -15)

@@ -118,6 +118,7 @@ func get_wall_axis():
 
 func wall_slide_jump_check(wall_axis):
 		if Input.is_action_just_pressed("ui_up"):
+			SoundFx.play("Jump", randf_range(0.6, 1.0), -10)
 			velocity.x = wall_axis * MAX_SPEED
 			velocity.y = -JUMP_FORCE
 			state = MOVE
@@ -150,6 +151,7 @@ func wall_detach_check(wall_axis):
 
 func jump():
 		if is_on_floor() and Input.is_action_just_pressed("ui_up"): 
+			SoundFx.play("Jump", randf_range(0.6, 1.0), -10)
 			double_jump = true
 			velocity.y = -JUMP_FORCE
 			jumping = true
@@ -157,6 +159,7 @@ func jump():
 		elif Input.is_action_just_released("ui_up") and velocity.y < -JUMP_FORCE/2:
 			velocity.y = -JUMP_FORCE/2
 		elif Input.is_action_just_pressed("ui_up") and double_jump == true:
+			SoundFx.play("Jump", randf_range(0.6, 1.0), -10)
 			jumping = true
 			double_jump = false
 			velocity.y = -JUMP_FORCE * 0.75
@@ -210,12 +213,14 @@ func fire_missile():
 	Playerstats.set_missiles(-1)
 	
 func creat_dust_effect():
+	SoundFx.play("Step", randf_range(0.6, 1.2), -10)
 	var dust_pos = global_position
 	dust_pos.x += randf_range(-4,4)
 	Utils.instance_scene_on_main(DUST_EFFECT, dust_pos)
 
 func _on_hurtbox_hit(damage):
 	if invincible == false:
+		SoundFx.play("Hurt")
 		Playerstats.set_health(damage)
 		$Blink_Animator.play("blink")
 

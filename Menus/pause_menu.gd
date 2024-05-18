@@ -6,14 +6,20 @@ func set_paused(value):
 	paused = value
 	get_tree().paused = paused
 	visible = paused
+	if paused:
+		SoundFx.play("Pause", 1, -10)
+	else:
+		SoundFx.play("Unpause", 1, -10)
 	
 func _process(delta):
 	if Input.is_action_just_pressed("pause"):
-		self.paused = !paused 
+		self.paused = !paused  
 		set_paused(paused)
 
 func _on_resume_pressed():
+	SoundFx.play("Click", 1, -10)
 	set_paused(false)
 
 func _on_quit_pressed():
+	SoundFx.play("Click", 1, -10)
 	get_tree().quit()

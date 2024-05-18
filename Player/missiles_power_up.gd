@@ -5,6 +5,7 @@ func _ready():
 		queue_free()
 
 func _pickup():
+	super._pickup()
 	if playerstats.missiles_unlocked == false:
 		playerstats.set_missiles_unlock(true)
 	else:
