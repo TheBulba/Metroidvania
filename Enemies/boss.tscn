@@ -977,7 +977,7 @@ shape = SubResource("CircleShape2D_wou2i")
 shape = SubResource("SeparationRayShape2D_762ne")
 
 [node name="EnemyStats" parent="." index="5"]
-max_health = 10
+max_health = 50
 
 [node name="RightCheck" type="RayCast2D" parent="." index="6"]
 target_position = Vector2(16, 0)

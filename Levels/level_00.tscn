@@ -79,11 +79,7 @@ rotation = 1.57078
 position = Vector2(48, 144)
 rotation = 1.57078
 
-[node name="Spike18" parent="Spike" index="16" instance=ExtResource("3_ggmxe")]
-position = Vector2(48, 144)
-rotation = 1.57078
-
-[node name="Spike4" parent="Spike" index="17" instance=ExtResource("3_ggmxe")]
+[node name="Spike4" parent="Spike" index="16" instance=ExtResource("3_ggmxe")]
 position = Vector2(48, 48)
 rotation = 3.14159
 

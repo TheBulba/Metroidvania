@@ -6,6 +6,7 @@ var MainInstances = Resourceloader.instances
 
 func _ready():
 	RenderingServer.set_default_clear_color(Color.BLACK)
+	Music._list_play()
 	
 	if SaverAndLoader.is_loading == true:
 		SaverAndLoader.Load_Game()
@@ -33,3 +34,7 @@ func get_door_with_connection(notDoor, connection):
 
 func _player_hit_door(door):
 	call_deferred("change_levels", door)
+	
+func _on_player_death():
+	await get_tree().create_timer(1).timeout
+	get_tree().change_scene_to_file("res://Menus/game_over.tscn")

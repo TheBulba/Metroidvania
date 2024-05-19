@@ -22,6 +22,7 @@ Resourceloader="*res://resourceloader.gd"
 Events="*res://events.gd"
 SaverAndLoader="*res://saver_and_loader.gd"
 SoundFx="*res://Scenes/sound_fx.tscn"
+Music="*res://Scenes/music.tscn"
 
 [display]
 

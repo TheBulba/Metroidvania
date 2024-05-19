@@ -22,5 +22,7 @@ remote_path = NodePath("../../Camera")
 
 [node name="Level_00" parent="." instance=ExtResource("5_vd0f7")]
 
+[connection signal="death" from="Player" to="." method="_on_player_death"]
+
 [editable path="Player"]
 [editable path="Player/Hurtbox"]

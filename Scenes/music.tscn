@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw7a12xo0nphj"]
+
+[ext_resource type="Script" path="res://Scenes/music.gd" id="1_8jkth"]
+[ext_resource type="AudioStream" uid="uid://da3hnvtilsjbc" path="res://Assets/Audio/BGM/Music.ogg" id="2_drayo"]
+
+[node name="Music" type="Node"]
+script = ExtResource("1_8jkth")
+music_list = Array[AudioStream]([ExtResource("2_drayo")])
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = -10.0
+
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

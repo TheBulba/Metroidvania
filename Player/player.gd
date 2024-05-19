@@ -29,6 +29,7 @@ var wall_slide_speed = 48
 var state = MOVE
 
 signal hit_door(door)
+signal death
 
 enum {
 	MOVE,
@@ -225,6 +226,7 @@ func _on_hurtbox_hit(damage):
 		$Blink_Animator.play("blink")
 
 func _ondied():
+	death.emit()
 	queue_free()
 	Instances.Player = null
 

@@ -17,7 +17,7 @@ var sounds = {
 
 @onready var Sound_Players = get_children()
 
-func play(sound_string,pitch = 0, volume = 0):
+func play(sound_string, pitch = 1, volume = 0):
 	for soundplayer in Sound_Players:
 		if not soundplayer.is_playing():
 			soundplayer.pitch_scale = pitch

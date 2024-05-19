@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://csw4tbjd8hmd2"]
+
+[ext_resource type="Theme" uid="uid://d2d0mfjlk3eqq" path="res://UI/DefaultTheme.tres" id="1_xry5r"]
+[ext_resource type="Script" path="res://Menus/game_over.gd" id="2_t0qs4"]
+
+[node name="GameOver" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xry5r")
+script = ExtResource("2_t0qs4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Game Over!"
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Respawn" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(56, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Respawn"
+
+[node name="Quit" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(56, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quit
+"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Respawn" to="." method="_on_respawn_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Quit" to="." method="_on_quit_pressed"]

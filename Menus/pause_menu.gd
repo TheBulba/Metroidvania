@@ -12,7 +12,8 @@ func set_paused(value):
 		SoundFx.play("Unpause", 1, -10)
 	
 func _process(delta):
-	if Input.is_action_just_pressed("pause"):
+	var player_is_alive =  get_tree().get_nodes_in_group("Player").size() > 0
+	if Input.is_action_just_pressed("pause") and player_is_alive:
 		self.paused = !paused  
 		set_paused(paused)
 
